@@ -1,0 +1,1179 @@
+[package]
+name = "abc-a"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+num = "=0.2.1"
+num-bigint = "=0.2.6"
+num-complex = "=0.2.4"
+num-integer = "=0.1.42"
+num-iter = "=0.1.40"
+num-rational = "=0.2.4"
+num-traits = "=0.2.11"
+num-derive = "=0.3.0"
+ndarray = "=0.13.0"
+nalgebra = "=0.20.0"
+alga = "=0.9.3"
+libm = "=0.2.1"
+rand = { version = "=0.7.3", features = ["small_rng"] }
+getrandom = "=0.1.14"
+rand_chacha = "=0.2.2"
+rand_core = "=0.5.1"
+rand_hc = "=0.2.0"
+rand_pcg = "=0.2.1"
+rand_distr = "=0.2.2"
+petgraph = "=0.5.0"
+indexmap = "=1.9.1"
+regex = "=1.3.6"
+lazy_static = "=1.4.0"
+ordered-float = "=1.0.2"
+ascii = "=1.0.0"
+permutohedron = "=0.2.4"
+superslice = "=1.0.0"
+itertools = "=0.9.0"
+itertools-num = "=0.1.3"
+maplit = "=1.0.2"
+either = "=1.5.3"
+im-rc = "=14.3.0"
+fixedbitset = "=0.2.0"
+bitset-fixed = "=0.1.0"
+proconio = { version = "=0.3.6", features = ["derive"] }
+text_io = "=0.1.8"
+whiteread = "=0.5.0"
+rustc-hash = "=1.1.0"
+smallvec = "=1.2.0"
+
+[[bin]]
+name = "abc001-a"
+path = "src/bin/abc001-a.rs"
+
+[[bin]]
+name = "abc002-a"
+path = "src/bin/abc002-a.rs"
+
+[[bin]]
+name = "abc003-a"
+path = "src/bin/abc003-a.rs"
+
+[[bin]]
+name = "abc004-a"
+path = "src/bin/abc004-a.rs"
+
+[[bin]]
+name = "abc005-a"
+path = "src/bin/abc005-a.rs"
+
+[[bin]]
+name = "abc006-a"
+path = "src/bin/abc006-a.rs"
+
+[[bin]]
+name = "abc007-a"
+path = "src/bin/abc007-a.rs"
+
+[[bin]]
+name = "abc008-a"
+path = "src/bin/abc008-a.rs"
+
+[[bin]]
+name = "abc009-a"
+path = "src/bin/abc009-a.rs"
+
+[[bin]]
+name = "abc010-a"
+path = "src/bin/abc010-a.rs"
+
+[[bin]]
+name = "abc011-a"
+path = "src/bin/abc011-a.rs"
+
+[[bin]]
+name = "abc012-a"
+path = "src/bin/abc012-a.rs"
+
+[[bin]]
+name = "abc013-a"
+path = "src/bin/abc013-a.rs"
+
+[[bin]]
+name = "abc014-a"
+path = "src/bin/abc014-a.rs"
+
+[[bin]]
+name = "abc015-a"
+path = "src/bin/abc015-a.rs"
+
+[[bin]]
+name = "abc016-a"
+path = "src/bin/abc016-a.rs"
+
+[[bin]]
+name = "abc017-a"
+path = "src/bin/abc017-a.rs"
+
+[[bin]]
+name = "abc018-a"
+path = "src/bin/abc018-a.rs"
+
+[[bin]]
+name = "abc019-a"
+path = "src/bin/abc019-a.rs"
+
+[[bin]]
+name = "abc020-a"
+path = "src/bin/abc020-a.rs"
+
+[[bin]]
+name = "abc021-a"
+path = "src/bin/abc021-a.rs"
+
+[[bin]]
+name = "abc022-a"
+path = "src/bin/abc022-a.rs"
+
+[[bin]]
+name = "abc023-a"
+path = "src/bin/abc023-a.rs"
+
+[[bin]]
+name = "abc024-a"
+path = "src/bin/abc024-a.rs"
+
+[[bin]]
+name = "abc025-a"
+path = "src/bin/abc025-a.rs"
+
+[[bin]]
+name = "abc026-a"
+path = "src/bin/abc026-a.rs"
+
+[[bin]]
+name = "abc027-a"
+path = "src/bin/abc027-a.rs"
+
+[[bin]]
+name = "abc028-a"
+path = "src/bin/abc028-a.rs"
+
+[[bin]]
+name = "abc029-a"
+path = "src/bin/abc029-a.rs"
+
+[[bin]]
+name = "abc030-a"
+path = "src/bin/abc030-a.rs"
+
+[[bin]]
+name = "abc031-a"
+path = "src/bin/abc031-a.rs"
+
+[[bin]]
+name = "abc032-a"
+path = "src/bin/abc032-a.rs"
+
+[[bin]]
+name = "abc033-a"
+path = "src/bin/abc033-a.rs"
+
+[[bin]]
+name = "abc034-a"
+path = "src/bin/abc034-a.rs"
+
+[[bin]]
+name = "abc035-a"
+path = "src/bin/abc035-a.rs"
+
+[[bin]]
+name = "abc036-a"
+path = "src/bin/abc036-a.rs"
+
+[[bin]]
+name = "abc037-a"
+path = "src/bin/abc037-a.rs"
+
+[[bin]]
+name = "abc038-a"
+path = "src/bin/abc038-a.rs"
+
+[[bin]]
+name = "abc039-a"
+path = "src/bin/abc039-a.rs"
+
+[[bin]]
+name = "abc040-a"
+path = "src/bin/abc040-a.rs"
+
+[[bin]]
+name = "abc041-a"
+path = "src/bin/abc041-a.rs"
+
+[[bin]]
+name = "abc042-a"
+path = "src/bin/abc042-a.rs"
+
+[[bin]]
+name = "abc043-a"
+path = "src/bin/abc043-a.rs"
+
+[[bin]]
+name = "abc044-a"
+path = "src/bin/abc044-a.rs"
+
+[[bin]]
+name = "abc045-a"
+path = "src/bin/abc045-a.rs"
+
+[[bin]]
+name = "abc046-a"
+path = "src/bin/abc046-a.rs"
+
+[[bin]]
+name = "abc047-a"
+path = "src/bin/abc047-a.rs"
+
+[[bin]]
+name = "abc048-a"
+path = "src/bin/abc048-a.rs"
+
+[[bin]]
+name = "abc049-a"
+path = "src/bin/abc049-a.rs"
+
+[[bin]]
+name = "abc050-a"
+path = "src/bin/abc050-a.rs"
+
+[[bin]]
+name = "abc051-a"
+path = "src/bin/abc051-a.rs"
+
+[[bin]]
+name = "abc052-a"
+path = "src/bin/abc052-a.rs"
+
+[[bin]]
+name = "abc053-a"
+path = "src/bin/abc053-a.rs"
+
+[[bin]]
+name = "abc054-a"
+path = "src/bin/abc054-a.rs"
+
+[[bin]]
+name = "abc055-a"
+path = "src/bin/abc055-a.rs"
+
+[[bin]]
+name = "abc056-a"
+path = "src/bin/abc056-a.rs"
+
+[[bin]]
+name = "abc057-a"
+path = "src/bin/abc057-a.rs"
+
+[[bin]]
+name = "abc058-a"
+path = "src/bin/abc058-a.rs"
+
+[[bin]]
+name = "abc059-a"
+path = "src/bin/abc059-a.rs"
+
+[[bin]]
+name = "abc060-a"
+path = "src/bin/abc060-a.rs"
+
+[[bin]]
+name = "abc061-a"
+path = "src/bin/abc061-a.rs"
+
+[[bin]]
+name = "abc062-a"
+path = "src/bin/abc062-a.rs"
+
+[[bin]]
+name = "abc063-a"
+path = "src/bin/abc063-a.rs"
+
+[[bin]]
+name = "abc064-a"
+path = "src/bin/abc064-a.rs"
+
+[[bin]]
+name = "abc065-a"
+path = "src/bin/abc065-a.rs"
+
+[[bin]]
+name = "abc066-a"
+path = "src/bin/abc066-a.rs"
+
+[[bin]]
+name = "abc067-a"
+path = "src/bin/abc067-a.rs"
+
+[[bin]]
+name = "abc068-a"
+path = "src/bin/abc068-a.rs"
+
+[[bin]]
+name = "abc069-a"
+path = "src/bin/abc069-a.rs"
+
+[[bin]]
+name = "abc070-a"
+path = "src/bin/abc070-a.rs"
+
+[[bin]]
+name = "abc071-a"
+path = "src/bin/abc071-a.rs"
+
+[[bin]]
+name = "abc072-a"
+path = "src/bin/abc072-a.rs"
+
+[[bin]]
+name = "abc073-a"
+path = "src/bin/abc073-a.rs"
+
+[[bin]]
+name = "abc074-a"
+path = "src/bin/abc074-a.rs"
+
+[[bin]]
+name = "abc075-a"
+path = "src/bin/abc075-a.rs"
+
+[[bin]]
+name = "abc076-a"
+path = "src/bin/abc076-a.rs"
+
+[[bin]]
+name = "abc077-a"
+path = "src/bin/abc077-a.rs"
+
+[[bin]]
+name = "abc078-a"
+path = "src/bin/abc078-a.rs"
+
+[[bin]]
+name = "abc079-a"
+path = "src/bin/abc079-a.rs"
+
+[[bin]]
+name = "abc080-a"
+path = "src/bin/abc080-a.rs"
+
+[[bin]]
+name = "abc081-a"
+path = "src/bin/abc081-a.rs"
+
+[[bin]]
+name = "abc082-a"
+path = "src/bin/abc082-a.rs"
+
+[[bin]]
+name = "abc083-a"
+path = "src/bin/abc083-a.rs"
+
+[[bin]]
+name = "abc084-a"
+path = "src/bin/abc084-a.rs"
+
+[[bin]]
+name = "abc085-a"
+path = "src/bin/abc085-a.rs"
+
+[[bin]]
+name = "abc086-a"
+path = "src/bin/abc086-a.rs"
+
+[[bin]]
+name = "abc087-a"
+path = "src/bin/abc087-a.rs"
+
+[[bin]]
+name = "abc088-a"
+path = "src/bin/abc088-a.rs"
+
+[[bin]]
+name = "abc089-a"
+path = "src/bin/abc089-a.rs"
+
+[[bin]]
+name = "abc090-a"
+path = "src/bin/abc090-a.rs"
+
+[[bin]]
+name = "abc091-a"
+path = "src/bin/abc091-a.rs"
+
+[[bin]]
+name = "abc092-a"
+path = "src/bin/abc092-a.rs"
+
+[[bin]]
+name = "abc093-a"
+path = "src/bin/abc093-a.rs"
+
+[[bin]]
+name = "abc094-a"
+path = "src/bin/abc094-a.rs"
+
+[[bin]]
+name = "abc095-a"
+path = "src/bin/abc095-a.rs"
+
+[[bin]]
+name = "abc096-a"
+path = "src/bin/abc096-a.rs"
+
+[[bin]]
+name = "abc097-a"
+path = "src/bin/abc097-a.rs"
+
+[[bin]]
+name = "abc098-a"
+path = "src/bin/abc098-a.rs"
+
+[[bin]]
+name = "abc099-a"
+path = "src/bin/abc099-a.rs"
+
+[[bin]]
+name = "abc100-a"
+path = "src/bin/abc100-a.rs"
+
+[[bin]]
+name = "abc101-a"
+path = "src/bin/abc101-a.rs"
+
+[[bin]]
+name = "abc102-a"
+path = "src/bin/abc102-a.rs"
+
+[[bin]]
+name = "abc103-a"
+path = "src/bin/abc103-a.rs"
+
+[[bin]]
+name = "abc104-a"
+path = "src/bin/abc104-a.rs"
+
+[[bin]]
+name = "abc105-a"
+path = "src/bin/abc105-a.rs"
+
+[[bin]]
+name = "abc106-a"
+path = "src/bin/abc106-a.rs"
+
+[[bin]]
+name = "abc107-a"
+path = "src/bin/abc107-a.rs"
+
+[[bin]]
+name = "abc108-a"
+path = "src/bin/abc108-a.rs"
+
+[[bin]]
+name = "abc109-a"
+path = "src/bin/abc109-a.rs"
+
+[[bin]]
+name = "abc110-a"
+path = "src/bin/abc110-a.rs"
+
+[[bin]]
+name = "abc111-a"
+path = "src/bin/abc111-a.rs"
+
+[[bin]]
+name = "abc112-a"
+path = "src/bin/abc112-a.rs"
+
+[[bin]]
+name = "abc113-a"
+path = "src/bin/abc113-a.rs"
+
+[[bin]]
+name = "abc114-a"
+path = "src/bin/abc114-a.rs"
+
+[[bin]]
+name = "abc115-a"
+path = "src/bin/abc115-a.rs"
+
+[[bin]]
+name = "abc116-a"
+path = "src/bin/abc116-a.rs"
+
+[[bin]]
+name = "abc117-a"
+path = "src/bin/abc117-a.rs"
+
+[[bin]]
+name = "abc118-a"
+path = "src/bin/abc118-a.rs"
+
+[[bin]]
+name = "abc119-a"
+path = "src/bin/abc119-a.rs"
+
+[[bin]]
+name = "abc120-a"
+path = "src/bin/abc120-a.rs"
+
+[[bin]]
+name = "abc121-a"
+path = "src/bin/abc121-a.rs"
+
+[[bin]]
+name = "abc122-a"
+path = "src/bin/abc122-a.rs"
+
+[[bin]]
+name = "abc123-a"
+path = "src/bin/abc123-a.rs"
+
+[[bin]]
+name = "abc124-a"
+path = "src/bin/abc124-a.rs"
+
+[[bin]]
+name = "abc125-a"
+path = "src/bin/abc125-a.rs"
+
+[[bin]]
+name = "abc126-a"
+path = "src/bin/abc126-a.rs"
+
+[[bin]]
+name = "abc127-a"
+path = "src/bin/abc127-a.rs"
+
+[[bin]]
+name = "abc128-a"
+path = "src/bin/abc128-a.rs"
+
+[[bin]]
+name = "abc129-a"
+path = "src/bin/abc129-a.rs"
+
+[[bin]]
+name = "abc130-a"
+path = "src/bin/abc130-a.rs"
+
+[[bin]]
+name = "abc131-a"
+path = "src/bin/abc131-a.rs"
+
+[[bin]]
+name = "abc132-a"
+path = "src/bin/abc132-a.rs"
+
+[[bin]]
+name = "abc133-a"
+path = "src/bin/abc133-a.rs"
+
+[[bin]]
+name = "abc134-a"
+path = "src/bin/abc134-a.rs"
+
+[[bin]]
+name = "abc135-a"
+path = "src/bin/abc135-a.rs"
+
+[[bin]]
+name = "abc136-a"
+path = "src/bin/abc136-a.rs"
+
+[[bin]]
+name = "abc137-a"
+path = "src/bin/abc137-a.rs"
+
+[[bin]]
+name = "abc138-a"
+path = "src/bin/abc138-a.rs"
+
+[[bin]]
+name = "abc139-a"
+path = "src/bin/abc139-a.rs"
+
+[[bin]]
+name = "abc140-a"
+path = "src/bin/abc140-a.rs"
+
+[[bin]]
+name = "abc141-a"
+path = "src/bin/abc141-a.rs"
+
+[[bin]]
+name = "abc142-a"
+path = "src/bin/abc142-a.rs"
+
+[[bin]]
+name = "abc143-a"
+path = "src/bin/abc143-a.rs"
+
+[[bin]]
+name = "abc144-a"
+path = "src/bin/abc144-a.rs"
+
+[[bin]]
+name = "abc145-a"
+path = "src/bin/abc145-a.rs"
+
+[[bin]]
+name = "abc146-a"
+path = "src/bin/abc146-a.rs"
+
+[[bin]]
+name = "abc147-a"
+path = "src/bin/abc147-a.rs"
+
+[[bin]]
+name = "abc148-a"
+path = "src/bin/abc148-a.rs"
+
+[[bin]]
+name = "abc149-a"
+path = "src/bin/abc149-a.rs"
+
+[[bin]]
+name = "abc150-a"
+path = "src/bin/abc150-a.rs"
+
+[[bin]]
+name = "abc151-a"
+path = "src/bin/abc151-a.rs"
+
+[[bin]]
+name = "abc152-a"
+path = "src/bin/abc152-a.rs"
+
+[[bin]]
+name = "abc153-a"
+path = "src/bin/abc153-a.rs"
+
+[[bin]]
+name = "abc154-a"
+path = "src/bin/abc154-a.rs"
+
+[[bin]]
+name = "abc155-a"
+path = "src/bin/abc155-a.rs"
+
+[[bin]]
+name = "abc156-a"
+path = "src/bin/abc156-a.rs"
+
+[[bin]]
+name = "abc157-a"
+path = "src/bin/abc157-a.rs"
+
+[[bin]]
+name = "abc158-a"
+path = "src/bin/abc158-a.rs"
+
+[[bin]]
+name = "abc159-a"
+path = "src/bin/abc159-a.rs"
+
+[[bin]]
+name = "abc160-a"
+path = "src/bin/abc160-a.rs"
+
+[[bin]]
+name = "abc161-a"
+path = "src/bin/abc161-a.rs"
+
+[[bin]]
+name = "abc162-a"
+path = "src/bin/abc162-a.rs"
+
+[[bin]]
+name = "abc163-a"
+path = "src/bin/abc163-a.rs"
+
+[[bin]]
+name = "abc164-a"
+path = "src/bin/abc164-a.rs"
+
+[[bin]]
+name = "abc165-a"
+path = "src/bin/abc165-a.rs"
+
+[[bin]]
+name = "abc166-a"
+path = "src/bin/abc166-a.rs"
+
+[[bin]]
+name = "abc167-a"
+path = "src/bin/abc167-a.rs"
+
+[[bin]]
+name = "abc168-a"
+path = "src/bin/abc168-a.rs"
+
+[[bin]]
+name = "abc169-a"
+path = "src/bin/abc169-a.rs"
+
+[[bin]]
+name = "abc170-a"
+path = "src/bin/abc170-a.rs"
+
+[[bin]]
+name = "abc171-a"
+path = "src/bin/abc171-a.rs"
+
+[[bin]]
+name = "abc172-a"
+path = "src/bin/abc172-a.rs"
+
+[[bin]]
+name = "abc173-a"
+path = "src/bin/abc173-a.rs"
+
+[[bin]]
+name = "abc174-a"
+path = "src/bin/abc174-a.rs"
+
+[[bin]]
+name = "abc175-a"
+path = "src/bin/abc175-a.rs"
+
+[[bin]]
+name = "abc176-a"
+path = "src/bin/abc176-a.rs"
+
+[[bin]]
+name = "abc177-a"
+path = "src/bin/abc177-a.rs"
+
+[[bin]]
+name = "abc178-a"
+path = "src/bin/abc178-a.rs"
+
+[[bin]]
+name = "abc179-a"
+path = "src/bin/abc179-a.rs"
+
+[[bin]]
+name = "abc180-a"
+path = "src/bin/abc180-a.rs"
+
+[[bin]]
+name = "abc181-a"
+path = "src/bin/abc181-a.rs"
+
+[[bin]]
+name = "abc182-a"
+path = "src/bin/abc182-a.rs"
+
+[[bin]]
+name = "abc183-a"
+path = "src/bin/abc183-a.rs"
+
+[[bin]]
+name = "abc184-a"
+path = "src/bin/abc184-a.rs"
+
+[[bin]]
+name = "abc185-a"
+path = "src/bin/abc185-a.rs"
+
+[[bin]]
+name = "abc186-a"
+path = "src/bin/abc186-a.rs"
+
+[[bin]]
+name = "abc187-a"
+path = "src/bin/abc187-a.rs"
+
+[[bin]]
+name = "abc188-a"
+path = "src/bin/abc188-a.rs"
+
+[[bin]]
+name = "abc189-a"
+path = "src/bin/abc189-a.rs"
+
+[[bin]]
+name = "abc190-a"
+path = "src/bin/abc190-a.rs"
+
+[[bin]]
+name = "abc191-a"
+path = "src/bin/abc191-a.rs"
+
+[[bin]]
+name = "abc192-a"
+path = "src/bin/abc192-a.rs"
+
+[[bin]]
+name = "abc193-a"
+path = "src/bin/abc193-a.rs"
+
+[[bin]]
+name = "abc194-a"
+path = "src/bin/abc194-a.rs"
+
+[[bin]]
+name = "abc195-a"
+path = "src/bin/abc195-a.rs"
+
+[[bin]]
+name = "abc196-a"
+path = "src/bin/abc196-a.rs"
+
+[[bin]]
+name = "abc197-a"
+path = "src/bin/abc197-a.rs"
+
+[[bin]]
+name = "abc198-a"
+path = "src/bin/abc198-a.rs"
+
+[[bin]]
+name = "abc199-a"
+path = "src/bin/abc199-a.rs"
+
+[[bin]]
+name = "abc200-a"
+path = "src/bin/abc200-a.rs"
+
+[[bin]]
+name = "abc201-a"
+path = "src/bin/abc201-a.rs"
+
+[[bin]]
+name = "abc202-a"
+path = "src/bin/abc202-a.rs"
+
+[[bin]]
+name = "abc203-a"
+path = "src/bin/abc203-a.rs"
+
+[[bin]]
+name = "abc204-a"
+path = "src/bin/abc204-a.rs"
+
+[[bin]]
+name = "abc205-a"
+path = "src/bin/abc205-a.rs"
+
+[[bin]]
+name = "abc206-a"
+path = "src/bin/abc206-a.rs"
+
+[[bin]]
+name = "abc207-a"
+path = "src/bin/abc207-a.rs"
+
+[[bin]]
+name = "abc208-a"
+path = "src/bin/abc208-a.rs"
+
+[[bin]]
+name = "abc209-a"
+path = "src/bin/abc209-a.rs"
+
+[[bin]]
+name = "abc210-a"
+path = "src/bin/abc210-a.rs"
+
+[[bin]]
+name = "abc211-a"
+path = "src/bin/abc211-a.rs"
+
+[[bin]]
+name = "abc212-a"
+path = "src/bin/abc212-a.rs"
+
+[[bin]]
+name = "abc213-a"
+path = "src/bin/abc213-a.rs"
+
+[[bin]]
+name = "abc214-a"
+path = "src/bin/abc214-a.rs"
+
+[[bin]]
+name = "abc215-a"
+path = "src/bin/abc215-a.rs"
+
+[[bin]]
+name = "abc216-a"
+path = "src/bin/abc216-a.rs"
+
+[[bin]]
+name = "abc217-a"
+path = "src/bin/abc217-a.rs"
+
+[[bin]]
+name = "abc218-a"
+path = "src/bin/abc218-a.rs"
+
+[[bin]]
+name = "abc219-a"
+path = "src/bin/abc219-a.rs"
+
+[[bin]]
+name = "abc220-a"
+path = "src/bin/abc220-a.rs"
+
+[[bin]]
+name = "abc221-a"
+path = "src/bin/abc221-a.rs"
+
+[[bin]]
+name = "abc222-a"
+path = "src/bin/abc222-a.rs"
+
+[[bin]]
+name = "abc223-a"
+path = "src/bin/abc223-a.rs"
+
+[[bin]]
+name = "abc224-a"
+path = "src/bin/abc224-a.rs"
+
+[[bin]]
+name = "abc225-a"
+path = "src/bin/abc225-a.rs"
+
+[[bin]]
+name = "abc226-a"
+path = "src/bin/abc226-a.rs"
+
+[[bin]]
+name = "abc227-a"
+path = "src/bin/abc227-a.rs"
+
+[[bin]]
+name = "abc228-a"
+path = "src/bin/abc228-a.rs"
+
+[[bin]]
+name = "abc229-a"
+path = "src/bin/abc229-a.rs"
+
+[[bin]]
+name = "abc230-a"
+path = "src/bin/abc230-a.rs"
+
+[[bin]]
+name = "abc231-a"
+path = "src/bin/abc231-a.rs"
+
+[[bin]]
+name = "abc232-a"
+path = "src/bin/abc232-a.rs"
+
+[[bin]]
+name = "abc233-a"
+path = "src/bin/abc233-a.rs"
+
+[[bin]]
+name = "abc234-a"
+path = "src/bin/abc234-a.rs"
+
+[[bin]]
+name = "abc235-a"
+path = "src/bin/abc235-a.rs"
+
+[[bin]]
+name = "abc236-a"
+path = "src/bin/abc236-a.rs"
+
+[[bin]]
+name = "abc237-a"
+path = "src/bin/abc237-a.rs"
+
+[[bin]]
+name = "abc238-a"
+path = "src/bin/abc238-a.rs"
+
+[[bin]]
+name = "abc239-a"
+path = "src/bin/abc239-a.rs"
+
+[[bin]]
+name = "abc240-a"
+path = "src/bin/abc240-a.rs"
+
+[[bin]]
+name = "abc241-a"
+path = "src/bin/abc241-a.rs"
+
+[[bin]]
+name = "abc242-a"
+path = "src/bin/abc242-a.rs"
+
+[[bin]]
+name = "abc243-a"
+path = "src/bin/abc243-a.rs"
+
+[[bin]]
+name = "abc244-a"
+path = "src/bin/abc244-a.rs"
+
+[[bin]]
+name = "abc245-a"
+path = "src/bin/abc245-a.rs"
+
+[[bin]]
+name = "abc246-a"
+path = "src/bin/abc246-a.rs"
+
+[[bin]]
+name = "abc247-a"
+path = "src/bin/abc247-a.rs"
+
+[[bin]]
+name = "abc248-a"
+path = "src/bin/abc248-a.rs"
+
+[[bin]]
+name = "abc249-a"
+path = "src/bin/abc249-a.rs"
+
+[[bin]]
+name = "abc250-a"
+path = "src/bin/abc250-a.rs"
+
+[[bin]]
+name = "abc251-a"
+path = "src/bin/abc251-a.rs"
+
+[[bin]]
+name = "abc252-a"
+path = "src/bin/abc252-a.rs"
+
+[[bin]]
+name = "abc253-a"
+path = "src/bin/abc253-a.rs"
+
+[[bin]]
+name = "abc254-a"
+path = "src/bin/abc254-a.rs"
+
+[[bin]]
+name = "abc255-a"
+path = "src/bin/abc255-a.rs"
+
+[[bin]]
+name = "abc256-a"
+path = "src/bin/abc256-a.rs"
+
+[[bin]]
+name = "abc257-a"
+path = "src/bin/abc257-a.rs"
+
+[[bin]]
+name = "abc258-a"
+path = "src/bin/abc258-a.rs"
+
+[[bin]]
+name = "abc259-a"
+path = "src/bin/abc259-a.rs"
+
+[[bin]]
+name = "abc260-a"
+path = "src/bin/abc260-a.rs"
+
+[[bin]]
+name = "abc261-a"
+path = "src/bin/abc261-a.rs"
+
+[[bin]]
+name = "abc262-a"
+path = "src/bin/abc262-a.rs"
+
+[[bin]]
+name = "abc263-a"
+path = "src/bin/abc263-a.rs"
+
+[[bin]]
+name = "abc264-a"
+path = "src/bin/abc264-a.rs"
+
+[[bin]]
+name = "abc265-a"
+path = "src/bin/abc265-a.rs"
+
+[[bin]]
+name = "abc266-a"
+path = "src/bin/abc266-a.rs"
+
+[[bin]]
+name = "abc267-a"
+path = "src/bin/abc267-a.rs"
+
+[[bin]]
+name = "abc268-a"
+path = "src/bin/abc268-a.rs"
+
+[[bin]]
+name = "abc269-a"
+path = "src/bin/abc269-a.rs"
+
+[[bin]]
+name = "abc270-a"
+path = "src/bin/abc270-a.rs"
+
+[[bin]]
+name = "abc271-a"
+path = "src/bin/abc271-a.rs"
+
+[[bin]]
+name = "abc272-a"
+path = "src/bin/abc272-a.rs"
+
+[[bin]]
+name = "abc273-a"
+path = "src/bin/abc273-a.rs"
+
+[[bin]]
+name = "abc274-a"
+path = "src/bin/abc274-a.rs"
+
+[[bin]]
+name = "abc275-a"
+path = "src/bin/abc275-a.rs"
+
+[[bin]]
+name = "abc276-a"
+path = "src/bin/abc276-a.rs"
+
+[[bin]]
+name = "abc277-a"
+path = "src/bin/abc277-a.rs"
+
+[[bin]]
+name = "abc278-a"
+path = "src/bin/abc278-a.rs"
+
+[[bin]]
+name = "abc279-a"
+path = "src/bin/abc279-a.rs"
+
+[[bin]]
+name = "abc280-a"
+path = "src/bin/abc280-a.rs"
+
+[[bin]]
+name = "abc281-a"
+path = "src/bin/abc281-a.rs"
+
+[[bin]]
+name = "abc282-a"
+path = "src/bin/abc282-a.rs"
+
+[[bin]]
+name = "abc283-a"
+path = "src/bin/abc283-a.rs"

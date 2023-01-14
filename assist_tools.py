@@ -91,6 +91,8 @@ class ProblemNameParts:
             OJ_PATH,
             "submit",
             "--yes",
+            "-w",
+            "0",
             self.problem_url(),
             self.bin_target_file_pathname(),
         ]
