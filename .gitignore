@@ -11,3 +11,6 @@ Cargo.lock
 
 # Added by myself.
 .venv/
+__pycache__/
+.mypy_cache/
+test/

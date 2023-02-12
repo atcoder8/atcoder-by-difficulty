@@ -1,0 +1,36 @@
+[command]
+# Command of online-judge-tools.
+online_judge_tools = "oj"
+
+# Command to open a URL.
+open_url = "firefox.exe"
+
+[path]
+# Executable file of online-judge-tools.
+oj_path = ".venv/bin/oj"
+
+# Pathname of cargo config pathname.
+cargo_config_file_pathname = "Cargo.toml"
+
+# Pathname format of submission file.
+submission_file_pathname_format = "src/bin/{contest_class}-{problem_index}/{problem_id}.rs"
+
+# Pathname of the directory to download testcase.
+testcase_dir_pathname = "test"
+
+[template]
+# Template of submission file.
+submission_file = """\
+fn main() {
+    
+}
+"""
+
+[target_table]
+# Format for registering the file for submission.
+submission_file_format = """
+
+[[bin]]
+name = "{problem_id}"
+path = "{submission_file_pathname}"
+"""
