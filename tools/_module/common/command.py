@@ -6,21 +6,25 @@ from abc import ABC, abstractmethod
 from . import config, problem_id_information
 
 
-def add_common_arguments(parser: argparse.ArgumentParser) -> None:
-    parser.add_argument("problem_id", type=str, help="Problem ID. (Example: abc123-a)")
-
-    parser.add_argument(
-        "-c",
-        "--config",
-        default=config.DEFAULT_CONFIG_PATHNAME,
-        type=str,
-        help="Pathname of configuration file for this assist tool."
-        f" (default: {config.DEFAULT_CONFIG_PATHNAME})",
-    )
-
-
-class CommonArguments(ABC):
+class Command(ABC):
     COMMAND_DESCRIPTION: str
+
+    @classmethod
+    def add_common_arguments(cls, parser: argparse.ArgumentParser) -> None:
+        parser.add_argument(
+            "problem_id",
+            type=str,
+            help="Problem ID. (Example: abc123-a)",
+        )
+
+        parser.add_argument(
+            "-c",
+            "--config",
+            default=config.DEFAULT_CONFIG_PATHNAME,
+            type=str,
+            help="Pathname of configuration file for this assist tool."
+            f" (default: {config.DEFAULT_CONFIG_PATHNAME})",
+        )
 
     @classmethod
     @abstractmethod

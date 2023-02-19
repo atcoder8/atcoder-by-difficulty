@@ -1,7 +1,7 @@
 import argparse
 import subprocess
 
-from .common import url, common_arguments
+from .common import url, command
 
 
 def open_problem_page(
@@ -15,12 +15,12 @@ def open_problem_page(
     return subprocess.run(cmd_args, check=check_returncode)
 
 
-class OpenProblemPage(common_arguments.CommonArguments):
+class OpenProblemPage(command.Command):
     COMMAND_DESCRIPTION = "Open the specified problem page."
 
     @classmethod
     def add_arguments(cls, parser: argparse.ArgumentParser) -> None:
-        common_arguments.add_common_arguments(parser)
+        super().add_arguments(parser)
 
         parser.add_argument(
             "-p",

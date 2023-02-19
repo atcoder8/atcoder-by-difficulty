@@ -1,7 +1,7 @@
 import argparse
 import subprocess
 
-from .common import common_arguments
+from .common import command
 
 
 DEFAULT_TIME_LIMIT = 2.0
@@ -38,12 +38,12 @@ def test_solution(
     return subprocess.run(test_cmd_args, check=check_returncode)
 
 
-class TestSolution(common_arguments.CommonArguments):
+class TestSolution(command.Command):
     COMMAND_DESCRIPTION = "Test the solution program."
 
     @classmethod
     def add_arguments(cls, parser: argparse.ArgumentParser) -> None:
-        common_arguments.add_common_arguments(parser)
+        super().add_arguments(parser)
 
         parser.add_argument(
             "-e",

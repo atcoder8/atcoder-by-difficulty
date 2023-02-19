@@ -3,7 +3,7 @@ import argparse
 from .common import (
     config,
     problem_id_information,
-    common_arguments,
+    command,
 )
 
 
@@ -30,12 +30,12 @@ def remove_submission_file(
         submission_file_path.unlink()
 
 
-class RemoveSubmissionFile(common_arguments.CommonArguments):
+class RemoveSubmissionFile(command.Command):
     COMMAND_DESCRIPTION = "Remove file for submission."
 
     @classmethod
     def add_arguments(cls, parser: argparse.ArgumentParser):
-        common_arguments.add_common_arguments(parser)
+        super().add_arguments(parser)
 
     def __init__(self, cmdline_args: argparse.Namespace) -> None:
         super().__init__(cmdline_args)

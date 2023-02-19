@@ -4,12 +4,12 @@ import argparse
 from typing import Sequence
 
 from _module import prepare, open, download, test, submit, remove
-from _module.common import common_arguments
+from _module.common import command
 
 
 def _add_sub_parser(
     subparsers: argparse._SubParsersAction,
-    command_class: type[common_arguments.CommonArguments],
+    command_class: type[command.Command],
     name: str,
     aliases: Sequence[str],
 ):

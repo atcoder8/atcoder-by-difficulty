@@ -4,7 +4,7 @@ from .common import (
     config,
     problem_id_information,
     url,
-    common_arguments,
+    command,
 )
 from . import open, download
 
@@ -59,7 +59,7 @@ def prepare_solve_problem(
         )
 
 
-class PrepareProblem(common_arguments.CommonArguments):
+class PrepareProblem(command.Command):
     COMMAND_DESCRIPTION = """\
 Make the following preparations:
   * Create a template file for the submission.
@@ -69,7 +69,7 @@ Make the following preparations:
 
     @classmethod
     def add_arguments(cls, parser: argparse.ArgumentParser):
-        common_arguments.add_common_arguments(parser)
+        super().add_arguments(parser)
 
         parser.add_argument(
             "--no-open",

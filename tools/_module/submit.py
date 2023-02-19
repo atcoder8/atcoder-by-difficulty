@@ -41,7 +41,7 @@ class SubmitSolution(test.TestSolution):
 
     @classmethod
     def add_arguments(cls, parser: argparse.ArgumentParser) -> None:
-        test.TestSolution.add_arguments(parser)
+        super().add_arguments(parser)
 
         parser.add_argument(
             "--no-test",
