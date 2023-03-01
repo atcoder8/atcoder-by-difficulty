@@ -26,9 +26,9 @@ def test_solution(
     test_cmd_args = [oj_command, "test"]
 
     if debug:
-        test_cmd_args.extend(["-c", f"cargo run --bin {problem_id}"])
+        test_cmd_args.extend(["-c", f"./target/debug/{problem_id}"])
     else:
-        test_cmd_args.extend(["-c", f"cargo run --release --bin {problem_id}"])
+        test_cmd_args.extend(["-c", f"./target/release/{problem_id}"])
 
     if error is not None:
         test_cmd_args.extend(["--error", str(error)])
