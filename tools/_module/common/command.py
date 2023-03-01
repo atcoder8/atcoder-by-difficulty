@@ -10,7 +10,7 @@ class Command(ABC):
     COMMAND_DESCRIPTION: str
 
     @classmethod
-    def add_common_arguments(cls, parser: argparse.ArgumentParser) -> None:
+    def add_arguments(cls, parser: argparse.ArgumentParser):
         parser.add_argument(
             "problem_id",
             type=str,
@@ -25,11 +25,6 @@ class Command(ABC):
             help="Pathname of configuration file for this assist tool."
             f" (default: {config.DEFAULT_CONFIG_PATHNAME})",
         )
-
-    @classmethod
-    @abstractmethod
-    def add_arguments(cls, parser: argparse.ArgumentParser):
-        ...
 
     def __init__(self, cmdline_args: argparse.Namespace) -> None:
         assert hasattr(cmdline_args, "problem_id")
