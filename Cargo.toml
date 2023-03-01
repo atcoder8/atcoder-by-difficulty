@@ -653,3 +653,15 @@ path = "src/bin/abc-d/abc150-d.rs"
 [[bin]]
 name = "abc151-d"
 path = "src/bin/abc-d/abc151-d.rs"
+
+[[bin]]
+name = "abc152-d"
+path = "src/bin/abc-d/abc152-d.rs"
+
+[[bin]]
+name = "abc153-d"
+path = "src/bin/abc-d/abc153-d.rs"
+
+[[bin]]
+name = "abc154-d"
+path = "src/bin/abc-d/abc154-d.rs"
