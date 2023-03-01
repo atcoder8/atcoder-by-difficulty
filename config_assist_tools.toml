@@ -1,14 +1,11 @@
 [command]
 # Command of online-judge-tools.
-online_judge_tools = "oj"
+online_judge_tools = ".venv/bin/oj"
 
 # Command to open a URL.
 open_url = "firefox.exe"
 
 [path]
-# Executable file of online-judge-tools.
-oj_path = ".venv/bin/oj"
-
 # Pathname of cargo config pathname.
 cargo_config_file_pathname = "Cargo.toml"
 
