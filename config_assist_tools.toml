@@ -18,8 +18,12 @@ testcase_dir_pathname = "test"
 [template]
 # Template of submission file.
 submission_file = """\
+use proconio::input;
+
 fn main() {
-    
+    input! {
+        
+    }
 }
 """
 
