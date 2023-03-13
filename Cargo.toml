@@ -769,3 +769,23 @@ path = "src/bin/abc-d/abc179-d.rs"
 [[bin]]
 name = "abc180-d"
 path = "src/bin/abc-d/abc180-d.rs"
+
+[[bin]]
+name = "abc181-d"
+path = "src/bin/abc-d/abc181-d.rs"
+
+[[bin]]
+name = "abc182-d"
+path = "src/bin/abc-d/abc182-d.rs"
+
+[[bin]]
+name = "abc183-d"
+path = "src/bin/abc-d/abc183-d.rs"
+
+[[bin]]
+name = "abc184-d"
+path = "src/bin/abc-d/abc184-d.rs"
+
+[[bin]]
+name = "abc185-d"
+path = "src/bin/abc-d/abc185-d.rs"
