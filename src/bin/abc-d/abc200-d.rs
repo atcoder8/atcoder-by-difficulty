@@ -19,54 +19,35 @@ fn solve() -> Option<(Vec<usize>, Vec<usize>)> {
         mut aa: [usize; n],
     }
 
-    aa.iter_mut().for_each(|a| *a %= MOD);
-
-    let reconstruct = |dp: &Vec<Vec<Option<usize>>>, last_val: usize, last_idx: usize| {
-        let mut seq = vec![];
-        let mut cur_val = last_val;
-        let mut cur_idx = dp[last_idx][last_val];
-
-        while let Some(idx) = cur_idx {
-            seq.push(idx + 1);
-            let prev_val = (cur_val + MOD - aa[idx]) % MOD;
-            let prev_idx = dp[idx][prev_val];
-            cur_val = prev_val;
-            cur_idx = prev_idx;
-        }
-
-        seq.reverse();
-
-        seq
+    let calc_rem = |mask: usize| {
+        (0..n)
+            .take_while(|&i| mask >> i != 0)
+            .filter(|&i| (mask >> i) & 1 == 1)
+            .map(|i| aa[i])
+            .sum::<usize>()
+            % MOD
     };
 
-    let mut dp: Vec<Vec<Option<usize>>> = vec![vec![None; MOD]];
+    let reconstruct = |mask: usize| -> Vec<usize> {
+        (0..n)
+            .take_while(|&i| mask >> i != 0)
+            .filter(|&i| (mask >> i) & 1 == 1)
+            .map(|i| i + 1)
+            .collect()
+    };
 
-    for (elem_idx, &a) in aa.iter().enumerate() {
-        dp.push(dp[elem_idx].clone());
+    let mut rem_to_mask = vec![None; MOD];
+    for mask in 1..(1_usize << n.min(8)) {
+        let rem = calc_rem(mask);
 
-        for prev_val in 0..MOD {
-            if dp[elem_idx][prev_val].is_some() {
-                let cur_val = (prev_val + a) % MOD;
-
-                dp[elem_idx + 1][cur_val] = Some(elem_idx);
-
-                if dp[elem_idx][cur_val].is_some() {
-                    let bb = reconstruct(&dp, cur_val, elem_idx);
-                    let cc = reconstruct(&dp, cur_val, elem_idx + 1);
-
-                    return Some((bb, cc));
-                }
-            }
-        }
-
-        if dp[elem_idx + 1][a].is_some() {
-            let bb = reconstruct(&dp, a, elem_idx + 1);
-            let cc = vec![elem_idx + 1];
+        if let Some(prev_mask) = rem_to_mask[rem] {
+            let bb = reconstruct(prev_mask);
+            let cc = reconstruct(mask);
 
             return Some((bb, cc));
         }
 
-        dp[elem_idx + 1][a] = Some(elem_idx);
+        rem_to_mask[rem] = Some(mask);
     }
 
     None
