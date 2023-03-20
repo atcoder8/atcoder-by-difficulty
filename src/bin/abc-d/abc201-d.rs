@@ -6,52 +6,46 @@ fn main() {
         aaa: [Chars; h],
     }
 
+    let mut effect = vec![vec![0; w]; h];
+    for i in 0..h {
+        for j in 0..w {
+            effect[i][j] = if (aaa[i][j] == '+') == ((i + j) % 2 == 1) {
+                1
+            } else {
+                -1
+            };
+        }
+    }
+    effect[0][0] = 0;
+
     let mut dp = vec![vec![0; w]; h];
-    dp[h - 1][w - 1] = if (aaa[h - 1][w - 1] == '+') ^ ((h + w) % 2 == 1) {
-        -1
-    } else {
-        1
-    };
+    dp[h - 1][w - 1] = effect[h - 1][w - 1];
 
     for i in (0..h).rev() {
         for j in (0..w).rev() {
-            if i == h - 1 && j == w - 1 {
+            if (i, j) == (h - 1, w - 1) {
                 continue;
             }
 
-            if (i + j) % 2 == 0 {
-                let mut best = -((h * w) as i32);
-
-                if i < h - 1 {
-                    best = best.max(dp[i + 1][j]);
-                }
-
-                if j < w - 1 {
-                    best = best.max(dp[i][j + 1]);
-                }
-
-                best += if aaa[i][j] == '+' { -1 } else { 1 };
-
-                dp[i][j] = best;
-            } else {
-                let mut best = (h * w) as i32;
-
-                if i < h - 1 {
-                    best = best.min(dp[i + 1][j]);
-                }
-
-                if j < w - 1 {
-                    best = best.min(dp[i][j + 1]);
-                }
-
-                best += if aaa[i][j] == '+' { 1 } else { -1 };
-
-                dp[i][j] = best;
+            let mut candidate = vec![];
+            if i < h - 1 {
+                candidate.push(dp[i + 1][j]);
             }
+            if j < w - 1 {
+                candidate.push(dp[i][j + 1]);
+            }
+
+            let mut best = if (i + j) % 2 == 0 {
+                candidate.into_iter().max().unwrap()
+            } else {
+                candidate.into_iter().min().unwrap()
+            };
+
+            best += effect[i][j];
+
+            dp[i][j] = best;
         }
     }
-
-    dp[0][0] -= if aaa[0][0] == '+' { -1 } else { 1 };
 
     if dp[0][0] > 0 {
         println!("Takahashi");
