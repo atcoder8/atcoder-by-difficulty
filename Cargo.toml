@@ -889,7 +889,3 @@ path = "src/bin/abc-d/abc204-d.rs"
 [[bin]]
 name = "abc205-d"
 path = "src/bin/abc-d/abc205-d.rs"
-
-[[bin]]
-name = "abc001-d"
-path = "src/bin/abc-d/abc001-d.rs"
