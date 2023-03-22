@@ -889,3 +889,23 @@ path = "src/bin/abc-d/abc204-d.rs"
 [[bin]]
 name = "abc205-d"
 path = "src/bin/abc-d/abc205-d.rs"
+
+[[bin]]
+name = "abc206-d"
+path = "src/bin/abc-d/abc206-d.rs"
+
+[[bin]]
+name = "abc207-d"
+path = "src/bin/abc-d/abc207-d.rs"
+
+[[bin]]
+name = "abc208-d"
+path = "src/bin/abc-d/abc208-d.rs"
+
+[[bin]]
+name = "abc209-d"
+path = "src/bin/abc-d/abc209-d.rs"
+
+[[bin]]
+name = "abc210-d"
+path = "src/bin/abc-d/abc210-d.rs"
