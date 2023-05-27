@@ -1,6 +1,6 @@
 [command]
 # Command of online-judge-tools.
-online_judge_tools = ".venv/bin/oj"
+online_judge_tools = "~/.venv/bin/oj"
 
 # Command to open a URL.
 open_url = "xdg-open"
