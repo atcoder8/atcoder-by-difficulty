@@ -973,3 +973,23 @@ path = "src/bin/abc-d/abc225-d.rs"
 [[bin]]
 name = "abc155-e"
 path = "src/bin/abc-e/abc155-e.rs"
+
+[[bin]]
+name = "abc226-d"
+path = "src/bin/abc-d/abc226-d.rs"
+
+[[bin]]
+name = "abc227-d"
+path = "/home/cycle/atcoder-by-difficulty/src/bin/abc-d/abc227-d.rs"
+
+[[bin]]
+name = "abc228-d"
+path = "/home/cycle/atcoder-by-difficulty/src/bin/abc-d/abc228-d.rs"
+
+[[bin]]
+name = "abc229-d"
+path = "/home/cycle/atcoder-by-difficulty/src/bin/abc-d/abc229-d.rs"
+
+[[bin]]
+name = "abc230-d"
+path = "/home/cycle/atcoder-by-difficulty/src/bin/abc-d/abc230-d.rs"
