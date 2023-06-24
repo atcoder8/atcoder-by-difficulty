@@ -997,3 +997,7 @@ path = "/home/cycle/atcoder-by-difficulty/src/bin/abc-d/abc230-d.rs"
 [[bin]]
 name = "arc132-a"
 path = "src/bin/arc-a/arc132-a.rs"
+
+[[bin]]
+name = "abc179-e"
+path = "src/bin/abc-e/abc179-e.rs"
