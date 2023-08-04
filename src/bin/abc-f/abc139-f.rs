@@ -45,7 +45,7 @@ pub mod amplitude_sort {
 
     /// Classification of regions on the xy-plane.
     #[derive(Debug, Clone, Copy, PartialEq, Eq)]
-    enum Area {
+    enum Region {
         Origin,
         XAxisPositive,
         QuadrantOne,
@@ -57,7 +57,7 @@ pub mod amplitude_sort {
         QuadrantFour,
     }
 
-    impl PartialOrd for Area {
+    impl PartialOrd for Region {
         fn partial_cmp(&self, other: &Self) -> Option<std::cmp::Ordering> {
             if let (Some(self_order), Some(other_order)) = (self.order(), other.order()) {
                 self_order.partial_cmp(&other_order)
@@ -67,9 +67,9 @@ pub mod amplitude_sort {
         }
     }
 
-    impl Area {
+    impl Region {
         fn determine(coord: Coord) -> Self {
-            use Area::*;
+            use Region::*;
 
             let (x, y) = coord;
 
@@ -90,60 +90,15 @@ pub mod amplitude_sort {
 
         fn order(self) -> Option<u8> {
             match self {
-                Area::Origin => None,
-                Area::XAxisPositive => Some(0),
-                Area::QuadrantOne => Some(1),
-                Area::YAxisPositive => Some(2),
-                Area::QuadrantTwo => Some(3),
-                Area::XAxisNegative => Some(4),
-                Area::QuadrantThree => Some(5),
-                Area::YAxisNegative => Some(6),
-                Area::QuadrantFour => Some(7),
-            }
-        }
-    }
-
-    /// Coordinate and classification of the area on the xy-plane for it.
-    #[derive(Debug, Clone, Copy, PartialEq, Eq)]
-    struct Amplitude {
-        area: Area,
-        x: i64,
-        y: i64,
-    }
-
-    impl PartialOrd for Amplitude {
-        fn partial_cmp(&self, other: &Self) -> Option<Ordering> {
-            match self.area.partial_cmp(&other.area) {
-                Some(core::cmp::Ordering::Equal) => {}
-                ord => return ord,
-            }
-
-            match (self.y * other.x).partial_cmp(&(other.y * self.x)) {
-                Some(core::cmp::Ordering::Equal) => {}
-                ord => return ord,
-            }
-
-            let self_sq_dist = self.x.pow(2) + self.y.pow(2);
-            let other_sq_dist = other.x.pow(2) + other.y.pow(2);
-
-            self_sq_dist.partial_cmp(&other_sq_dist)
-        }
-    }
-
-    impl Ord for Amplitude {
-        fn cmp(&self, other: &Self) -> Ordering {
-            self.partial_cmp(other).unwrap()
-        }
-    }
-
-    impl Amplitude {
-        fn new(coord: Coord) -> Self {
-            assert_ne!(coord, (0, 0), "Amplitude of the origin is not defined.");
-
-            Self {
-                area: Area::determine(coord),
-                x: coord.0,
-                y: coord.1,
+                Region::Origin => None,
+                Region::XAxisPositive => Some(0),
+                Region::QuadrantOne => Some(1),
+                Region::YAxisPositive => Some(2),
+                Region::QuadrantTwo => Some(3),
+                Region::XAxisNegative => Some(4),
+                Region::QuadrantThree => Some(5),
+                Region::YAxisNegative => Some(6),
+                Region::QuadrantFour => Some(7),
             }
         }
     }
@@ -182,6 +137,24 @@ pub mod amplitude_sort {
     /// );
     /// ```
     pub fn amplitude_sort(coords: &mut [Coord]) {
-        coords.sort_by_cached_key(|coord| Amplitude::new(*coord));
+        coords.sort_unstable_by(|&coord1, &coord2| {
+            match Region::determine(coord1)
+                .partial_cmp(&Region::determine(coord2))
+                .unwrap()
+            {
+                Ordering::Equal => {}
+                ord => return ord,
+            }
+
+            let (x1, y1) = coord1;
+            let (x2, y2) = coord2;
+
+            match (y1 * x2).cmp(&(y2 * x1)) {
+                Ordering::Equal => {}
+                ord => return ord,
+            }
+
+            (coord1.0.pow(2) + coord1.1.pow(2)).cmp(&(coord2.0.pow(2) + coord2.1.pow(2)))
+        });
     }
 }
