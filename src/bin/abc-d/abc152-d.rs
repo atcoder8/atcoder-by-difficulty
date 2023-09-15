@@ -110,7 +110,7 @@ Wrong Answer on Test #{}
     pub fn generator() -> Input {
         let mut rng = rand::thread_rng();
 
-        let n = rng.gen_range(1, 100);
+        let n = rng.gen_range(1..100);
 
         n
     }

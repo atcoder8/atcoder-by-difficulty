@@ -71,9 +71,9 @@ Wrong Answer on Test #{}
     pub fn generator() -> Input {
         let mut rng = rand::thread_rng();
 
-        let digit_num = rng.gen_range(1, 100);
+        let digit_num = rng.gen_range(1..100);
 
-        (0..digit_num).map(|_| rng.gen_range(1, 10)).collect()
+        (0..digit_num).map(|_| rng.gen_range(1..10)).collect()
     }
 
     /// Return the expected answer.

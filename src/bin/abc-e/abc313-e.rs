@@ -569,8 +569,8 @@ Wrong Answer on Test #{}
     pub fn generator() -> Input {
         let mut rng = rand::thread_rng();
 
-        let n = rng.gen_range(2, 16);
-        (0..n).map(|_| rng.gen_range(1, 10)).collect()
+        let n = rng.gen_range(2..16);
+        (0..n).map(|_| rng.gen_range(1..10)).collect()
     }
 
     /// Return the expected answer.
