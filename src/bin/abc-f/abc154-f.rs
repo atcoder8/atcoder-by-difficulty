@@ -16,7 +16,7 @@ fn main() {
     let mut fac = Factorial::<Mint>::new();
 
     let mut count_sum_route_num =
-        |r: usize, c: usize| fac.combinations_with_repetition(r + 2, c + 1) - 1;
+        |r: usize, c: usize| fac.combinations_with_repetition(c + 2, r + 1) - 1;
 
     let ans = count_sum_route_num(r2, c2)
         - count_sum_route_num(r2, c1 - 1)
