@@ -15,16 +15,13 @@ fn main() {
 
     let mut fac = Factorial::<Mint>::new();
 
-    let mut count_sum_route_num = |r: usize, c: usize| -> Mint {
-        (1..=r)
-            .map(|i| fac.combinations_with_repetition(c, i))
-            .sum()
-    };
+    let mut count_sum_route_num =
+        |r: usize, c: usize| fac.combinations_with_repetition(r + 2, c + 1) - 1;
 
-    let ans = count_sum_route_num(r2 + 1, c2 + 1)
-        - count_sum_route_num(r2 + 1, c1)
-        - count_sum_route_num(r1, c2 + 1)
-        + count_sum_route_num(r1, c1);
+    let ans = count_sum_route_num(r2, c2)
+        - count_sum_route_num(r2, c1 - 1)
+        - count_sum_route_num(r1 - 1, c2)
+        + count_sum_route_num(r1 - 1, c1 - 1);
     println!("{}", ans);
 }
 
