@@ -1,8 +1,6 @@
 use modint2::Modint998244353;
 use proconio::input;
 
-use crate::factorial::Factorial;
-
 type Mint = Modint998244353;
 
 fn main() {
@@ -12,40 +10,37 @@ fn main() {
     }
 
     let mut counts = vec![0; m + 1];
-    let mut zero_cnt = 0;
+    let mut zero_num = 0;
     for &a in &aa {
         if a == 0 {
-            zero_cnt += 1;
+            zero_num += 1;
         } else {
             counts[a] += 1;
         }
     }
 
-    let mut fac = Factorial::<Mint>::new();
+    let mut fac = vec![Mint::new(1); zero_num + 1];
+    for i in 0..zero_num {
+        fac[i + 1] = fac[i] * (i + 1);
+    }
+    let mut inv_fac = vec![fac[zero_num].inv(); zero_num + 1];
+    for i in (0..zero_num).rev() {
+        inv_fac[i] = inv_fac[i + 1] * (i + 1);
+    }
 
     let mut ans = Mint::new(0);
-    let mut le_num = 0;
-    for a in 1..=m {
-        le_num += counts[a];
-        let lt_num = le_num - counts[a];
-
-        let mut comb_num = Mint::new(0);
-
-        for add_le_num in k.saturating_sub(le_num)..=zero_cnt {
-            comb_num += fac.combinations(zero_cnt, add_le_num)
-                * Mint::new(a).pow(add_le_num)
-                * Mint::new(m - a).pow(zero_cnt - add_le_num);
+    let mut ge_num = 0;
+    for a in (1..=m).rev() {
+        ge_num += counts[a];
+        for add_ge_num in (n - k + 1).saturating_sub(ge_num)..=zero_num {
+            ans += fac[zero_num]
+                * inv_fac[add_ge_num]
+                * inv_fac[zero_num - add_ge_num]
+                * Mint::new(m - a + 1).pow(add_ge_num)
+                * Mint::new(a - 1).pow(zero_num - add_ge_num);
         }
-
-        for add_lt_num in k.saturating_sub(lt_num)..=zero_cnt {
-            comb_num -= fac.combinations(zero_cnt, add_lt_num)
-                * Mint::new(a - 1).pow(add_lt_num)
-                * Mint::new(m - a + 1).pow(zero_cnt - add_lt_num);
-        }
-
-        ans += comb_num * a;
     }
-    ans /= Mint::new(m).pow(zero_cnt);
+    ans /= Mint::new(m).pow(zero_num);
 
     println!("{}", ans);
 }
@@ -462,74 +457,4 @@ because `a` and `m` are not prime to each other (gcd(a, m) = {}).",
 
     /// The type `Modint` with 998244353 as the modulus.
     pub type Modint998244353 = Modint<998244353>;
-}
-
-pub mod factorial {
-    use std::ops::{Div, Mul};
-
-    pub struct Factorial<T> {
-        fac: Vec<T>,
-    }
-
-    impl<T> Default for Factorial<T>
-    where
-        T: Clone + From<usize> + Mul<Output = T> + Div<Output = T>,
-    {
-        fn default() -> Self {
-            Self::new()
-        }
-    }
-
-    impl<T> Factorial<T>
-    where
-        T: Clone + From<usize> + Mul<Output = T> + Div<Output = T>,
-    {
-        /// Constructs a new, empty `Factorial<T>`.
-        pub fn new() -> Self {
-            Self {
-                fac: vec![T::from(1)],
-            }
-        }
-
-        /// Returns the factorial of `n`.
-        pub fn factorial(&mut self, n: usize) -> T {
-            if self.fac.len() < n + 1 {
-                for i in (self.fac.len() - 1)..n {
-                    self.fac.push(self.fac[i].clone() * (i + 1).into());
-                }
-            }
-            self.fac[n].clone()
-        }
-
-        /// Returns the number of choices when selecting `k` from `n` and arranging them in a row.
-        pub fn permutations(&mut self, n: usize, k: usize) -> T {
-            if n < k {
-                T::from(0)
-            } else {
-                self.factorial(n) / self.factorial(n - k)
-            }
-        }
-
-        /// Returns the number of choices to select `k` from `n`.
-        pub fn combinations(&mut self, n: usize, k: usize) -> T {
-            if n < k {
-                T::from(0)
-            } else {
-                self.factorial(n) / (self.factorial(k) * self.factorial(n - k))
-            }
-        }
-
-        /// Calculate the number of cases when sample of `k` elements from a set of `n` elements, allowing for duplicates.
-        pub fn combinations_with_repetition(&mut self, n: usize, k: usize) -> T {
-            if n == 0 {
-                if k == 0 {
-                    T::from(1)
-                } else {
-                    T::from(0)
-                }
-            } else {
-                self.combinations(n + k - 1, k)
-            }
-        }
-    }
 }
