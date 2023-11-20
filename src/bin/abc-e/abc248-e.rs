@@ -1,5 +1,4 @@
-use im_rc::HashSet;
-use itertools::Itertools;
+use itertools::iproduct;
 use proconio::input;
 
 fn main() {
@@ -20,14 +19,14 @@ fn solve() -> Option<usize> {
     }
 
     let mut ans = 0;
-    let mut used = HashSet::new();
+    let mut used = vec![vec![false; n]; n];
     for i in 0..n {
         let (x1, y1) = xy[i];
 
         for j in i + 1..n {
             let (x2, y2) = xy[j];
 
-            if used.contains(&(i, j)) {
+            if used[i][j] {
                 continue;
             }
 
@@ -49,8 +48,8 @@ fn solve() -> Option<usize> {
                 ans += 1;
             }
 
-            for pair in points.into_iter().combinations(2) {
-                used.insert((pair[0], pair[1]));
+            for (&p1, &p2) in iproduct!(&points, &points) {
+                used[p1][p2] = true;
             }
         }
     }
