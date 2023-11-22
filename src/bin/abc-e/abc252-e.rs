@@ -30,6 +30,7 @@ fn main() {
 
     println!("{}", (0..m).filter(|&i| used[i]).map(|i| i + 1).join(" "));
 }
+
 pub mod simple_dijkstra {
     //! Calculates the shortest distance from a single node to each node using the Dijkstra's method.
 
