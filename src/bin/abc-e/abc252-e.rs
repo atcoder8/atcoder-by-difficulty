@@ -2,7 +2,7 @@ use fixedbitset::FixedBitSet;
 use itertools::{enumerate, Itertools};
 use proconio::{input, marker::Usize1};
 
-use crate::dijkstra::dijkstra;
+use crate::simple_dijkstra::dijkstra;
 
 fn main() {
     input! {
@@ -10,13 +10,14 @@ fn main() {
         abc: [(Usize1, Usize1, usize); m],
     }
 
+    let dists = dijkstra(n, &abc, 0);
+
     let mut graph = vec![vec![]; n];
-    for (i, (a, b, c)) in enumerate(abc) {
+    for (i, &(a, b, c)) in enumerate(&abc) {
         graph[a].push((b, c, i));
         graph[b].push((a, c, i));
     }
 
-    let dists = dijkstra(&graph, 0);
     let mut used = FixedBitSet::with_capacity(m);
     for cur in 1..n {
         for &(adj, dist, edge_idx) in &graph[cur] {
@@ -29,22 +30,51 @@ fn main() {
 
     println!("{}", (0..m).filter(|&i| used[i]).map(|i| i + 1).join(" "));
 }
+pub mod simple_dijkstra {
+    //! Calculates the shortest distance from a single node to each node using the Dijkstra's method.
 
-pub mod dijkstra {
-    use std::{cmp::Reverse, collections::BinaryHeap};
+    use std::{cmp::Reverse, collections::BinaryHeap, ops::Add};
 
-    pub trait Weight: Clone + Ord {
+    /// Trait for edge weight.
+    pub trait Weight: Clone + Ord + Add<Self, Output = Self> {
+        /// Additive identity.
         fn zero() -> Self;
-        fn add(&self, rhs: &Self) -> Self;
     }
 
-    pub fn dijkstra<W>(graph: &[Vec<(usize, W, usize)>], start: usize) -> Vec<Option<W>>
+    /// Calculates the shortest distance from a single node to each node using the Dijkstra's method.
+    ///
+    /// The distance between nodes is defined by the sum of the weights of the edges in the path.
+    /// Edge weights must be non-negative.
+    /// Distances to unreachable nodes are denoted by `None`.
+    ///
+    /// # Arguments
+    ///
+    /// * `node_num` - Number of nodes.
+    /// * `edges` - Weighted edges.
+    /// * `start` - starting point.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// # use atcoder8_library::simple_dijkstra::dijkstra;
+    ///
+    /// let node_num = 6;
+    /// let edges = vec![(0, 1, 1), (0, 2, 10), (1, 3, 1), (2, 3, 1), (4, 5, 3)];
+    ///
+    /// let dists = dijkstra::<u32>(node_num, &edges, 0);
+    /// assert_eq!(dists, vec![Some(0), Some(1), Some(3), Some(2), None, None]);
+    /// ```
+    pub fn dijkstra<W>(node_num: usize, edges: &[(usize, usize, W)], start: usize) -> Vec<Option<W>>
     where
         W: Weight,
     {
-        let n = graph.len();
+        let mut graph = vec![vec![]; node_num];
+        for (u, v, weight) in edges {
+            graph[*u].push((*v, weight));
+            graph[*v].push((*u, weight));
+        }
 
-        let mut costs = vec![None; n];
+        let mut costs = vec![None; node_num];
         costs[start] = Some(W::zero());
 
         let mut heap = BinaryHeap::new();
@@ -55,13 +85,13 @@ pub mod dijkstra {
                 continue;
             }
 
-            for (next, edge_cost, _) in &graph[cur] {
-                let cand_cost = cost.add(edge_cost);
-                let next_cost = &mut costs[*next];
+            for &(next, edge_cost) in &graph[cur] {
+                let cand_cost = cost.clone() + edge_cost.clone();
+                let next_cost = &mut costs[next];
 
                 if next_cost.is_none() || &cand_cost < next_cost.as_ref().unwrap() {
                     *next_cost = Some(cand_cost.clone());
-                    heap.push((Reverse(cand_cost), *next));
+                    heap.push((Reverse(cand_cost), next));
                 }
             }
         }
@@ -69,21 +99,21 @@ pub mod dijkstra {
         costs
     }
 
-    macro_rules! impl_for_builtin_integer {
+    /// Macros to implement `Weight` trait to the built-in integer types.
+    macro_rules! impl_weight_for_builtin_integer {
         ($($ty: tt), *) => {
             $(
                 impl Weight for $ty {
                     fn zero() -> Self {
                         0
                     }
-
-                    fn add(&self, rhs: &Self) -> Self {
-                        self + rhs
-                    }
                 }
             )*
         };
     }
 
-    impl_for_builtin_integer!(u8, u16, u32, u64, u128, usize, i8, i16, i32, i64, i128, isize);
+    // Implements the `Weight` trait to the built-in integer types.
+    impl_weight_for_builtin_integer!(
+        u8, u16, u32, u64, u128, usize, i8, i16, i32, i64, i128, isize
+    );
 }
