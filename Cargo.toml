@@ -1633,3 +1633,7 @@ path = "src/bin/arc-c/arc138-c.rs"
 [[bin]]
 name = "arc160-c"
 path = "src/bin/arc-c/arc160-c.rs"
+
+[[bin]]
+name = "arc154-c"
+path = "src/bin/arc-c/arc154-c.rs"
