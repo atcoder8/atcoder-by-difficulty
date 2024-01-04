@@ -1701,3 +1701,7 @@ path = "src/bin/abc-f/abc217-f.rs"
 [[bin]]
 name = "abc150-e"
 path = "src/bin/abc-e/abc150-e.rs"
+
+[[bin]]
+name = "arc137-a"
+path = "src/bin/arc-a/arc137-a.rs"
