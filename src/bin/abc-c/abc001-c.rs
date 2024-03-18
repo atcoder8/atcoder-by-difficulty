@@ -21,7 +21,6 @@ fn solve() -> (&'static str, usize) {
 
     // 小数第2位を四捨五入した風向[m/s]の10倍
     let wind_speed = (dis + 3) / 6;
-    eprintln!("wind_speed = {}", wind_speed);
 
     if wind_speed <= 2 {
         return ("C", 0);
