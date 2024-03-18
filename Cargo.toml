@@ -1897,3 +1897,7 @@ path = "src/bin/abc-a/abc248-a.rs"
 [[bin]]
 name = "abc151-c"
 path = "src/bin/abc-c/abc151-c.rs"
+
+[[bin]]
+name = "abc001-c"
+path = "src/bin/abc-c/abc001-c.rs"
