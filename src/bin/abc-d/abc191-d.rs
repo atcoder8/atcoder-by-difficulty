@@ -1,84 +1,59 @@
+use num_integer::{div_ceil, div_floor, Roots};
 use proconio::input;
+use regex::Regex;
 
-const SCALE: i64 = 10000;
+const SCALER: i64 = 10000;
 
 fn main() {
     input! {
-        (x, y, r): (f64, f64, f64),
+        (x, y, r): (String, String, String),
     }
 
-    let (x, y, r) = (to_i64(x), to_i64(y), to_i64(r));
+    let re = Regex::new(r"^(?<sign>-?)(?<integer>[0-9]+)(?<decimal>\.[0-9]+)?").unwrap();
+
+    let parse = |s: &str| {
+        let capture = re.captures(s).unwrap();
+
+        let sign = if capture.name("sign").unwrap().as_str().is_empty() {
+            1
+        } else {
+            -1
+        };
+
+        let integer = capture
+            .name("integer")
+            .unwrap()
+            .as_str()
+            .parse::<i64>()
+            .unwrap()
+            * SCALER;
+
+        let decimal = match capture.name("decimal") {
+            Some(dec) => {
+                let mut dec = dec.as_str()[1..].to_owned();
+                dec += &"0".repeat(4 - dec.len());
+
+                dec.parse::<i64>().unwrap()
+            }
+            None => 0,
+        };
+
+        sign * (integer + decimal)
+    };
+
+    let (x, y, r) = (parse(&x), parse(&y), parse(&r));
 
     let mut ans = 0;
+    let min_x = div_ceil(x - r, SCALER) * SCALER;
+    let max_x = div_floor(x + r, SCALER) * SCALER;
+    for x0 in (min_x..=max_x).step_by(SCALER as usize) {
+        let sq_dy = r.pow(2) - (x - x0).pow(2);
+        let dy = sq_dy.sqrt();
 
-    let min_x = ceil_div(x - r, SCALE);
-    let max_x = floor_div(x + r, SCALE);
-
-    for x0 in min_x..=max_x {
-        let scaled_x0 = x0 * SCALE;
-
-        let diff_x = (x - scaled_x0).abs();
-
-        let sq_diff_y = r * r - diff_x * diff_x;
-
-        let low_lim = ceil_div(-(calc_floor_sqrt(sq_diff_y as usize) as i64) + y, SCALE);
-        let upp_lim = floor_div(calc_floor_sqrt(sq_diff_y as usize) as i64 + y, SCALE);
-
-        ans += upp_lim - low_lim + 1;
+        let min_y = div_ceil(y - dy, SCALER) * SCALER;
+        let max_y = div_floor(y + dy, SCALER) * SCALER;
+        ans += (max_y - min_y) / SCALER + 1;
     }
 
     println!("{}", ans);
-}
-
-fn to_i64(x: f64) -> i64 {
-    (SCALE as f64 * x).round() as i64
-}
-
-pub fn floor_div(a: i64, b: i64) -> i64 {
-    let abs_a = a.abs();
-    let abs_b = b.abs();
-
-    if a.is_positive() == b.is_positive() {
-        abs_a / abs_b
-    } else {
-        -((abs_a + abs_b - 1) / abs_b)
-    }
-}
-
-pub fn ceil_div(a: i64, b: i64) -> i64 {
-    let abs_a = a.abs();
-    let abs_b = b.abs();
-
-    if a.is_positive() == b.is_positive() {
-        (abs_a + abs_b - 1) / abs_b
-    } else {
-        -(abs_a / abs_b)
-    }
-}
-
-pub fn calc_floor_sqrt(n: usize) -> usize {
-    let mut ng = 1_usize << 0_usize.count_zeros() / 2;
-    let mut ok = 0;
-
-    while ng - ok >= 2 {
-        let mid = (ng + ok) / 2;
-
-        if mid * mid <= n {
-            ok = mid;
-        } else {
-            ng = mid;
-        }
-    }
-
-    ok
-}
-
-pub fn calc_ceil_sqrt(n: usize) -> usize {
-    let floor_sqrt_n = calc_floor_sqrt(n);
-
-    if floor_sqrt_n * floor_sqrt_n < n {
-        floor_sqrt_n + 1
-    } else {
-        floor_sqrt_n
-    }
 }
