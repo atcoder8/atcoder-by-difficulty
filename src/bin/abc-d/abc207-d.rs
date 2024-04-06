@@ -1,7 +1,7 @@
-use itertools::Itertools;
-use proconio::input;
+use std::{cmp::Ordering, ops::Sub};
 
-type Coord = (f64, f64);
+use itertools::{chain, Itertools};
+use proconio::input;
 
 fn main() {
     println!("{}", if solve() { "Yes" } else { "No" });
@@ -10,74 +10,151 @@ fn main() {
 fn solve() -> bool {
     input! {
         n: usize,
-        ab: [(f64, f64); n],
-        cd: [(f64, f64); n],
+        ab: [(i64, i64); n],
+        cd: [(i64, i64); n],
     }
 
     if n == 1 {
         return true;
     }
 
-    let (center_a, center_b) = calc_center_coord(&ab);
-    let shifted_ab = ab
-        .iter()
-        .map(|&(a, b)| (a - center_a, b - center_b))
-        .collect_vec();
-
-    let (center_c, center_d) = calc_center_coord(&cd);
-    let shifted_cd = cd
-        .iter()
-        .map(|&(c, d)| (c - center_c, d - center_d))
-        .collect_vec();
-
-    let (a1, b1) = shifted_ab[is_same_coord(shifted_ab[0], (0.0, 0.0)) as usize];
-    let rad1 = b1.atan2(a1);
-
-    for &(c1, d1) in &shifted_cd {
-        if is_same_coord((c1, d1), (0.0, 0.0)) {
-            continue;
-        }
-
-        let rad2 = d1.atan2(c1);
-
-        let rotated_ab = shifted_ab
+    let create_triplets = |coords: &[Coord], base: Coord| {
+        let aligned_coords = coords
             .iter()
-            .map(|&coord| rotate(coord, rad2 - rad1))
+            .filter(|coord| **coord != base)
+            .map(|coord| *coord - base)
+            .sorted_unstable_by(Coord::cmp_by_amplitude)
             .collect_vec();
 
-        let match_flag = rotated_ab.iter().all(|&coord1| {
-            shifted_cd
-                .iter()
-                .any(|&coord2| is_same_coord(coord1, coord2))
-        });
+        chain!(&aligned_coords, [&aligned_coords[0]])
+            .tuple_windows()
+            .map(|(coord1, coord2)| {
+                (
+                    coord1.square_abs(),
+                    coord1.inner_prod(&coord2),
+                    coord1.cross_prod(&coord2),
+                )
+            })
+            .collect_vec()
+    };
 
-        if match_flag {
+    let coords1 = ab.into_iter().map(|coord| Coord::from(coord)).collect_vec();
+    let coords2 = cd.into_iter().map(|coord| Coord::from(coord)).collect_vec();
+
+    let base1 = coords1[0];
+    let mut concat_triplets = create_triplets(&coords1, base1);
+    concat_triplets.reserve(2 * (n - 1));
+
+    for &base2 in &coords2 {
+        let triplets = create_triplets(&coords2, base2);
+        concat_triplets.extend(chain!(&triplets, &triplets).cloned());
+
+        let match_lengths = z_algorithm(&concat_triplets);
+        if match_lengths[n - 1..].iter().any(|&len| len >= n - 1) {
             return true;
         }
+
+        concat_triplets.truncate(n - 1);
     }
 
     false
 }
 
-fn calc_center_coord(xy: &Vec<Coord>) -> Coord {
-    let n = xy.len();
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+struct Coord(i64, i64);
 
-    let center_x = xy.iter().map(|coord| coord.0).sum::<f64>() / n as f64;
-    let center_y = xy.iter().map(|coord| coord.1).sum::<f64>() / n as f64;
-
-    (center_x, center_y)
+impl From<(i64, i64)> for Coord {
+    fn from(value: (i64, i64)) -> Self {
+        Self(value.0, value.1)
+    }
 }
 
-fn is_same_coord(coord1: Coord, coord2: Coord) -> bool {
-    let (x1, y1) = coord1;
-    let (x2, y2) = coord2;
+impl Sub<Self> for Coord {
+    type Output = Self;
 
-    (x1 - x2).abs() <= 1e-6 && (y1 - y2).abs() <= 1e-6
+    fn sub(self, rhs: Self) -> Self::Output {
+        Self(self.0 - rhs.0, self.1 - rhs.1)
+    }
 }
 
-fn rotate(coord: Coord, rad: f64) -> Coord {
-    let (x, y) = coord;
-    let (sin, cos) = rad.sin_cos();
+impl Coord {
+    fn amplitude_sign(&self) -> i8 {
+        if self.1 < 0 || self.1 == 0 && self.0 > 0 {
+            -1
+        } else {
+            1
+        }
+    }
 
-    (cos * x - sin * y, sin * x + cos * y)
+    fn cmp_by_amplitude(&self, other: &Self) -> Ordering {
+        let sign1 = self.amplitude_sign();
+        let sign2 = other.amplitude_sign();
+
+        if sign1 != sign2 {
+            return sign1.cmp(&sign2);
+        }
+
+        let Coord(x1, y1) = *self;
+        let Coord(x2, y2) = *other;
+
+        match (y1 * x2).cmp(&(y2 * x1)) {
+            Ordering::Less => Ordering::Less,
+            Ordering::Equal => self.square_abs().cmp(&other.square_abs()),
+            Ordering::Greater => Ordering::Greater,
+        }
+    }
+
+    fn inner_prod(&self, other: &Self) -> i64 {
+        self.0 * other.0 + self.1 * other.1
+    }
+
+    fn cross_prod(&self, other: &Self) -> i64 {
+        self.0 * other.1 - self.1 * other.0
+    }
+
+    fn square_abs(&self) -> i64 {
+        self.0.pow(2) + self.1.pow(2)
+    }
+}
+
+/// For each non-negative integer `i` less than `|seq|`,
+/// find the length of the longest common prefix of `seq` and `seq[i..]`.
+pub fn z_algorithm<T>(seq: &[T]) -> Vec<usize>
+where
+    T: Eq,
+{
+    if seq.is_empty() {
+        return vec![];
+    }
+
+    let n = seq.len();
+
+    let mut lengths = vec![0; n];
+    lengths[0] = n;
+
+    let mut cursor = 1;
+    let mut common_len = 0;
+    while cursor < n {
+        while cursor + common_len < n && seq[cursor + common_len] == seq[common_len] {
+            common_len += 1;
+        }
+
+        if common_len == 0 {
+            cursor += 1;
+            continue;
+        }
+
+        lengths[cursor] = common_len;
+
+        let mut shift = 1;
+        while shift + lengths[shift] < common_len {
+            lengths[cursor + shift] = lengths[shift];
+            shift += 1;
+        }
+
+        cursor += shift;
+        common_len -= shift;
+    }
+
+    lengths
 }
