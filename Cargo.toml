@@ -2009,3 +2009,7 @@ path = "src/bin/abc-c/abc134-c.rs"
 [[bin]]
 name = "abc297-g"
 path = "src/bin/abc-g/abc297-g.rs"
+
+[[bin]]
+name = "abc115-c"
+path = "src/bin/abc-c/abc115-c.rs"
