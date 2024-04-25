@@ -2021,3 +2021,7 @@ path = "src/bin/abc-c/abc106-c.rs"
 [[bin]]
 name = "abc086-c"
 path = "src/bin/abc-c/abc086-c.rs"
+
+[[bin]]
+name = "abc277-b"
+path = "src/bin/abc-b/abc277-b.rs"
