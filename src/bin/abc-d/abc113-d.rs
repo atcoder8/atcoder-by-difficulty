@@ -1,4 +1,3 @@
-use itertools::chain;
 use modint2::Modint1000000007;
 use proconio::{input, marker::Usize1};
 
@@ -9,43 +8,34 @@ fn main() {
         (h, w, k): (usize, usize, Usize1),
     }
 
-    let valid_lines = (0..w - 1).fold(vec![0_usize], |lines, _| {
-        chain(
-            lines.iter().map(|bit| bit << 1),
-            lines.iter().filter_map(|&bit| {
-                if bit & 1 == 0 {
-                    Some(bit << 1 | 1)
-                } else {
-                    None
-                }
-            }),
-        )
-        .collect()
-    });
+    let mut fibonacci = vec![Mint::new(0); w + 1];
+    fibonacci[1] = Mint::new(1);
+    for i in 2..=w {
+        fibonacci[i] = fibonacci[i - 2] + fibonacci[i - 1];
+    }
 
-    let mut dp = vec![Mint::new(0); w];
-    dp[0] = Mint::new(1);
-
-    for _ in 0..h {
+    let update = |dp: &[Mint]| {
         let mut next_dp = vec![Mint::new(0); w];
-        for &bits in &valid_lines {
-            for from in 0..w {
-                let to = if from < w - 1 && bits >> from & 1 == 1 {
-                    from + 1
-                } else if from > 0 && bits >> (from - 1) & 1 == 1 {
-                    from - 1
-                } else {
-                    from
-                };
+        for from in 0..w {
+            next_dp[from] += dp[from] * fibonacci[from + 1] * fibonacci[w - from];
 
-                next_dp[to] += dp[from];
+            if from > 0 {
+                next_dp[from - 1] += dp[from] * fibonacci[from] * fibonacci[w - from];
+            }
+
+            if from < w - 1 {
+                next_dp[from + 1] += dp[from] * fibonacci[from + 1] * fibonacci[w - 1 - from];
             }
         }
 
-        dp = next_dp;
-    }
+        next_dp
+    };
 
-    println!("{}", dp[k]);
+    let mut init = vec![Mint::new(0); w];
+    init[0].set_rem(1);
+    let counts = (0..h).fold(init, |dp, _| update(&dp));
+
+    println!("{}", counts[k]);
 }
 
 pub mod modint2 {
